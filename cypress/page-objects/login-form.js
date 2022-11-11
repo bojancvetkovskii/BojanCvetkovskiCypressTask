@@ -1,3 +1,4 @@
+const TITLE = "#Registration_Title";
 const FIRST_NAME_FIELD = "#Registration_FirstName";
 const LAST_NAME_FIELD = "#Registration_LastName";
 const EMAIL_ADDRESS_FIELD = "#Registration_EmailAddress";
@@ -14,13 +15,29 @@ export class RegisterForm {
 
     static inputRegisteringData() {
         cy.fixture("userForRegistration").then((testData) => {
+            cy.get(TITLE).type(testData["title"], {force: true})
             cy.get(FIRST_NAME_FIELD).type(testData["firstName"], {force: true})
             cy.get(LAST_NAME_FIELD).type(testData["lastName"], {force: true})
             cy.get(EMAIL_ADDRESS_FIELD).type(testData["emailAddress"], {force: true})
+            cy.get(DATE_OF_BIRTH_DAY).type(testData["dateOfBirthDay"], {force: true})
+            cy.get(DATE_OF_BIRTH_MONTH).type(testData["dateOfBirthMonth"], {force: true})
+            cy.get(DATE_OF_BIRTH_YEAR).type(testData["dateOfBirthYear"], {force: true})
             cy.get(PASSWORD_FIELD).type(testData["password"], {force: true})
             cy.get(CONFIRM_PASSWORD_FIELD).type(testData["confirmPassword"], {force: true})
         })
 
+    }
+
+    static inputRegisteringDataWithoutPasswords() {
+        cy.fixture("userForRegistration").then((testData) => {
+            cy.get(TITLE).type(testData["title"], {force: true})
+            cy.get(FIRST_NAME_FIELD).type(testData["firstName"], {force: true})
+            cy.get(LAST_NAME_FIELD).type(testData["lastName"], {force: true})
+            cy.get(EMAIL_ADDRESS_FIELD).type(testData["emailAddress"], {force: true})
+            cy.get(DATE_OF_BIRTH_DAY).type(testData["dateOfBirthDay"], {force: true})
+            cy.get(DATE_OF_BIRTH_MONTH).type(testData["dateOfBirthMonth"], {force: true})
+            cy.get(DATE_OF_BIRTH_YEAR).type(testData["dateOfBirthYear"], {force: true})
+        })
     }
 
     static inputPassword(password, confirmPassword) {

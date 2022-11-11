@@ -48,8 +48,20 @@ describe("Registering new user tests", () => {
         cy.visit("/registration")
         RegisterForm.inputRegisteringData()
         RegisterForm.clickRegisterButton()
-
     })
+
+    it("Should not register user when password and confirmation password are different", () =>{
+        cy.visit("/registration")
+        RegisterForm.inputRegisteringDataWithoutPasswords()
+        RegisterForm.inputPassword("Test12345", "Test666666")
+        RegisterForm.clickRegisterButton()
+
+        expect("#Registration_txtPassword-error").to.exist;
+        expect("#Registration_ConfirmPassword-error").to.exist;
+
+        cy.url().should("include", "https://lv.sportsdirect.com/registration")
+    })
+
 
 
 })
