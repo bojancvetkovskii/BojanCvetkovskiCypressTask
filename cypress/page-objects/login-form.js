@@ -1,4 +1,3 @@
-const REGISTRATION_TITLE = "#Registration_Title";
 const FIRST_NAME_FIELD = "#Registration_FirstName";
 const LAST_NAME_FIELD = "#Registration_LastName";
 const EMAIL_ADDRESS_FIELD = "#Registration_EmailAddress";
@@ -12,14 +11,15 @@ const REGISTER_BUTTON = "#RegistrationSubmit";
 const CANCEL_BUTTON = ".cancelBut";
 
 export class RegisterForm {
+
     static inputRegisteringData() {
-        cy.get(REGISTRATION_TITLE).type("Mr")
-        cy.get(FIRST_NAME_FIELD).type("John")
-        cy.get(LAST_NAME_FIELD).type("Wick")
-        cy.get(EMAIL_ADDRESS_FIELD).type("john.wick@gmail.com")
-        cy.get(DATE_OF_BIRTH_DAY).type("25")
-        cy.get(DATE_OF_BIRTH_MONTH).type("November")
-        cy.get(DATE_OF_BIRTH_YEAR).type("1976")
+        cy.fixture("userForRegistration").then((testData) => {
+            cy.get(FIRST_NAME_FIELD).type(testData["firstName"], {force: true})
+            cy.get(LAST_NAME_FIELD).type(testData["lastName"], {force: true})
+            cy.get(EMAIL_ADDRESS_FIELD).type(testData["emailAddress"], {force: true})
+            cy.get(PASSWORD_FIELD).type(testData["password"], {force: true})
+            cy.get(CONFIRM_PASSWORD_FIELD).type(testData["confirmPassword"], {force: true})
+        })
 
     }
 
@@ -34,12 +34,12 @@ export class RegisterForm {
     }
 
     static clickRegisterButton() {
-        cy.get(REGISTER_BUTTON).click()
+        cy.get(REGISTER_BUTTON).click({force: true})
 
     }
 
     static clickCancelButton() {
-        cy.get(CANCEL_BUTTON).click()
+        cy.get(CANCEL_BUTTON).click({force: true})
 
     }
 }

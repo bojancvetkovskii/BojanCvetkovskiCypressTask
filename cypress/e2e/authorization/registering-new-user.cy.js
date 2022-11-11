@@ -38,11 +38,18 @@ describe("Registering new user tests", () => {
         cy.url().should("include", "https://lv.sportsdirect.com/registration")
     })
 
-        it("Should return to home page when 'Cancel' button is pressed", () => {
-            cy.visit("/registration")
-            RegisterForm.clickCancelButton()
-            cy.url().should("include", "https://lv.sportsdirect.com")
-        })
+    it("Should return to home page when 'Cancel' button is pressed", () => {
+        cy.visit("/registration")
+        RegisterForm.clickCancelButton()
+        cy.url().should("include", "https://lv.sportsdirect.com")
+    })
+
+    it("Successfully registering new user", () => {
+        cy.visit("/registration")
+        RegisterForm.inputRegisteringData()
+        RegisterForm.clickRegisterButton()
+
+    })
 
 
 })
