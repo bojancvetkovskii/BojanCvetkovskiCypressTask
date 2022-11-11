@@ -1,3 +1,5 @@
+import {RegisterForm} from "../../page-objects/login-form";
+
 describe("Registering new user tests", () => {
 
     it("Successful click on the Account button from homepage", () => {
@@ -26,6 +28,15 @@ describe("Registering new user tests", () => {
     it("Should display errors when there are no data for the user", () => {
         cy.visit("/registration")
         RegisterForm.clickRegisterButton()
+
+        expect("#Registration_FirstName-error").to.exist;
+        expect("#Registration_LastName-error").to.exist;
+        expect("#Registration_EmailAddress-error").to.exist;
+        expect("#Registration_txtPassword-error").to.exist;
+        expect("#Registration_ConfirmPassword-error").to.exist;
+
         cy.url().should("include", "https://lv.sportsdirect.com/registration")
     })
+
+
 })
