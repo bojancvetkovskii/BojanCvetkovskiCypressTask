@@ -15,6 +15,11 @@ describe("Registering new user tests", () => {
         cy.get(".NewCustWrap:last-of-type").click()
         cy.url().should("include", "https://lv.sportsdirect.com/registration")
     })
+    it("Successfully displayed the form for registering new user", () => {
+        cy.visit("/registration")
+        expect("#RegistrationForm").to.exist
+    })
+
 
 
 })
