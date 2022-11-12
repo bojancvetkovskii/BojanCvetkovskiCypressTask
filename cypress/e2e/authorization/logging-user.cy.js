@@ -1,6 +1,5 @@
 import {LoginForm} from "../../page-objects/login-form";
 
-
 describe("Logging in user", () => {
 
     it("Successful logging in", () => {
@@ -25,4 +24,19 @@ describe("Logging in user", () => {
         LoginForm.clickSignInSecurelyButton()
         cy.url().should("include", "https://lv.sportsdirect.com")
     })
+
+    it("User should not login with wrong password", () => {
+        cy.visit("/registration")
+        LoginForm.inputRegisteringData()
+        LoginForm.clickRegisterButton()
+
+        cy.visit("/login")
+        LoginForm.inputEmailAndIncorrectPassword()
+        LoginForm.clickSignInSecurelyButton()
+        cy.get(".dnnFormMessage.dnnFormValidationSummary.field-validation-error")
+            .contains("This email address or password is incorrect")
+        cy.url().should("include", "https://lv.sportsdirect.com/login")
+    })
+
+
 })
