@@ -25,5 +25,4 @@ describe("Logging in user", () => {
         LoginForm.clickSignInSecurelyButton()
         cy.url().should("include", "https://lv.sportsdirect.com")
     })
-
 })
