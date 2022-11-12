@@ -38,5 +38,10 @@ describe("Logging in user", () => {
         cy.url().should("include", "https://lv.sportsdirect.com/login")
     })
 
+    it("User should be redirected to 'Forgot your password' form", () => {
+        cy.visit("/login")
+        LoginForm.clickForgottenYourPasswordLink()
+        cy.url().should("include", "https://lv.sportsdirect.com/login/forgottenpassword")
+    })
 
 })
