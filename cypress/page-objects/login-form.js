@@ -10,8 +10,10 @@ const CONFIRM_PASSWORD_FIELD = "#Registration_ConfirmPassword";
 const IS_SUBSCRIBER_CHECKBOX = "#Registration_isSubscriber";
 const REGISTER_BUTTON = "#RegistrationSubmit";
 const CANCEL_BUTTON = ".cancelBut";
+const SIGN_IN_SECURELY_BUTTON = "#LogginButton";
+const FORGOTTEN_YOUR_PASSWORD_LINK = "#ForgotPasswordLinkButton";
 
-export class RegisterForm {
+export class LoginForm {
 
     static inputRegisteringData() {
         cy.fixture("userForRegistration").then((testData) => {
@@ -40,6 +42,13 @@ export class RegisterForm {
         })
     }
 
+    static inputDataForLoggingUser() {
+        cy.fixture("userForRegistration").then((testData) => {
+            cy.get(EMAIL_ADDRESS_FIELD).type(testData["emailAddress"], {force: true})
+            cy.get(PASSWORD_FIELD).type(testData["password"], {force: true})
+        })
+    }
+
     static inputPassword(password, confirmPassword) {
         cy.get(PASSWORD_FIELD).type(password)
         cy.get(CONFIRM_PASSWORD_FIELD).type(confirmPassword)
@@ -47,16 +56,21 @@ export class RegisterForm {
 
     static clickSubscriptionCheckbox() {
         cy.get(IS_SUBSCRIBER_CHECKBOX).type("true")
-
     }
 
     static clickRegisterButton() {
         cy.get(REGISTER_BUTTON).click({force: true})
-
     }
 
     static clickCancelButton() {
         cy.get(CANCEL_BUTTON).click({force: true})
+    }
 
+    static clickSignInSecurelyButton() {
+        cy.get(SIGN_IN_SECURELY_BUTTON).click({force: true})
+    }
+
+    static clickForgottenYourPasswordLink() {
+        cy.get(FORGOTTEN_YOUR_PASSWORD_LINK).click({force: true})
     }
 }

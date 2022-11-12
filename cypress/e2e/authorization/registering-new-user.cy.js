@@ -1,4 +1,4 @@
-import {RegisterForm} from "../../page-objects/login-form";
+import {LoginForm} from "../../page-objects/login-form";
 
 describe("Registering new user tests", () => {
 
@@ -27,7 +27,7 @@ describe("Registering new user tests", () => {
 
     it("Should display errors when there are no data for the user", () => {
         cy.visit("/registration")
-        RegisterForm.clickRegisterButton()
+        LoginForm.clickRegisterButton()
 
         expect("#Registration_FirstName-error").to.exist;
         expect("#Registration_LastName-error").to.exist;
@@ -40,28 +40,25 @@ describe("Registering new user tests", () => {
 
     it("Should return to home page when 'Cancel' button is pressed", () => {
         cy.visit("/registration")
-        RegisterForm.clickCancelButton()
+        LoginForm.clickCancelButton()
         cy.url().should("include", "https://lv.sportsdirect.com")
     })
 
     it("Successfully registering new user", () => {
         cy.visit("/registration")
-        RegisterForm.inputRegisteringData()
-        RegisterForm.clickRegisterButton()
+        LoginForm.inputRegisteringData()
+        LoginForm.clickRegisterButton()
     })
 
-    it("Should not register user when password and confirmation password are different", () =>{
+    it("Should not register user when password and confirmation password are different", () => {
         cy.visit("/registration")
-        RegisterForm.inputRegisteringDataWithoutPasswords()
-        RegisterForm.inputPassword("Test12345", "Test666666")
-        RegisterForm.clickRegisterButton()
+        LoginForm.inputRegisteringDataWithoutPasswords()
+        LoginForm.inputPassword("Test12345", "Test666666")
+        LoginForm.clickRegisterButton()
 
         expect("#Registration_txtPassword-error").to.exist;
         expect("#Registration_ConfirmPassword-error").to.exist;
 
         cy.url().should("include", "https://lv.sportsdirect.com/registration")
     })
-
-
-
 })
