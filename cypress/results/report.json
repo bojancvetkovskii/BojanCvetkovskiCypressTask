@@ -2,14 +2,14 @@
   "stats": {
     "suites": 1,
     "tests": 1,
-    "passes": 1,
+    "passes": 0,
     "pending": 0,
-    "failures": 0,
-    "start": "2022-11-13T16:41:16.938Z",
-    "end": "2022-11-13T16:41:25.354Z",
-    "duration": 8416,
+    "failures": 1,
+    "start": "2022-11-13T17:37:33.037Z",
+    "end": "2022-11-13T17:37:40.052Z",
+    "duration": 7015,
     "testsRegistered": 1,
-    "passPercent": 100,
+    "passPercent": 0,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "f9dab535-816a-4ca5-a807-6ba11fb42279",
+      "uuid": "efd4f19f-4772-48c3-9f07-a3afc9ad06a7",
       "title": "",
       "fullFile": "cypress\\e2e\\products-on-sale\\products-on-sale.cy.js",
       "file": "cypress\\e2e\\products-on-sale\\products-on-sale.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "3cbfa490-d46f-4440-8ad5-6532458ff335",
+          "uuid": "e6475697-1351-4337-be7f-7ef92c980081",
           "title": "Products on sale page",
           "fullFile": "",
           "file": "",
@@ -38,29 +38,33 @@
               "title": "Should have discount price on every product in sale page",
               "fullTitle": "Products on sale page Should have discount price on every product in sale page",
               "timedOut": null,
-              "duration": 8036,
-              "state": "passed",
-              "speed": "medium",
-              "pass": true,
-              "fail": false,
+              "duration": 579,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
               "pending": false,
-              "context": null,
+              "context": "[\n  \"assets/screenshots/products-on-sale.cy.js/Products on sale page -- Should have discount price on every product in sale page (failed).png\",\n  {\n    \"title\": \"Testing custom stuff\",\n    \"value\": \"Wohooo\"\n  }\n]",
               "code": "cy.get(\".s-producttext-price.s-producttext-withticket\").each(item => {\n  const priceWithDiscountObject = item.children(\"div.s-largered\");\n  const priceWithDiscount = priceWithDiscountObject.children(\".CurrencySizeLarge\").text().replace(\"€\", \"\");\n  const firstPriceObject = item.children(\".RefandPrice\");\n  const firstPrice = firstPriceObject.children(\".s-smalltext\").text().replace(\"€\", \"\");\n  expect(priceWithDiscountObject).to.exist;\n  expect(firstPriceObject).to.exist;\n  expect(parseInt(firstPrice)).is.greaterThan(parseInt(priceWithDiscount));\n});",
-              "err": {},
-              "uuid": "aa082c5c-853b-4141-9c05-413d4025e5f2",
-              "parentUUID": "3cbfa490-d46f-4440-8ad5-6532458ff335",
+              "err": {
+                "message": "CypressError: `cy.request()` failed on:\n\nhttps://discord.com/api/webhooks/955086226547965952/WuaK1GMcRDVkOexPEz60OETIorJOvQeX4L1ftw7jDn_NuDM_g5J20FkMAcY_mMoUmXPr\n\nThe response we received from your web server was:\n\n  > 404: Not Found\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: https://discord.com/api/webhooks/955086226547965952/WuaK1GMcRDVkOexPEz60OETIorJOvQeX4L1ftw7jDn_NuDM_g5J20FkMAcY_mMoUmXPr\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/10.11.0 Chrome/106.0.5249.51 Electron/21.0.0 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"cookie\": \"__dcfduid=b4f0486e637911edbf597ee0858cb0d8; __sdcfduid=b4f0486e637911edbf597ee0858cb0d8715df1330878fc147f7af23770d964ae56ffc7ec4158ccec4649b5e7335d8e59; __cfruid=eda72c877e50095694d999b76449fe26408ebe25-1668360989\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-type\": \"application/json\",\n  \"content-length\": 66\n}\nBody: {\"username\":\"Awesome Webhooks\",\"content\":\"Test for sale products\"}\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 404 - Not Found\nHeaders: {\n  \"date\": \"Sun, 13 Nov 2022 17:37:38 GMT\",\n  \"content-type\": \"application/json\",\n  \"content-length\": \"45\",\n  \"connection\": \"keep-alive\",\n  \"strict-transport-security\": \"max-age=31536000; includeSubDomains; preload\",\n  \"x-envoy-upstream-service-time\": \"17\",\n  \"via\": \"1.1 google\",\n  \"alt-svc\": \"h3=\\\":443\\\"; ma=86400, h3-29=\\\":443\\\"; ma=86400\",\n  \"cf-cache-status\": \"DYNAMIC\",\n  \"report-to\": \"{\\\"endpoints\\\":[{\\\"url\\\":\\\"https:\\\\/\\\\/a.nel.cloudflare.com\\\\/report\\\\/v3?s=6GR%2F8Z6Hqru0VAomiV7zat6QTWjXznDJLjbxXedIjpo7qGsFeonI%2BWjHUMBGx1zf40TlF0sujqkHw6be1x0Y8cs3mdu9F0l1aMD165r6VCHR6ALhzf40InDDEZcN\\\"}],\\\"group\\\":\\\"cf-nel\\\",\\\"max_age\\\":604800}\",\n  \"nel\": \"{\\\"success_fraction\\\":0,\\\"report_to\\\":\\\"cf-nel\\\",\\\"max_age\\\":604800}\",\n  \"x-content-type-options\": \"nosniff\",\n  \"server\": \"cloudflare\",\n  \"cf-ray\": \"769946c98c7cd228-SOF\"\n}\nBody: {\n  \"message\": \"Unknown Webhook\",\n  \"code\": 10015\n}\n\n\nhttps://on.cypress.io/request\n\nBecause this error occurred during a `after all` hook we are skipping the remaining tests in the current suite: `Products on sale page`",
+                "estack": "CypressError: `cy.request()` failed on:\n\nhttps://discord.com/api/webhooks/955086226547965952/WuaK1GMcRDVkOexPEz60OETIorJOvQeX4L1ftw7jDn_NuDM_g5J20FkMAcY_mMoUmXPr\n\nThe response we received from your web server was:\n\n  > 404: Not Found\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: https://discord.com/api/webhooks/955086226547965952/WuaK1GMcRDVkOexPEz60OETIorJOvQeX4L1ftw7jDn_NuDM_g5J20FkMAcY_mMoUmXPr\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/10.11.0 Chrome/106.0.5249.51 Electron/21.0.0 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"cookie\": \"__dcfduid=b4f0486e637911edbf597ee0858cb0d8; __sdcfduid=b4f0486e637911edbf597ee0858cb0d8715df1330878fc147f7af23770d964ae56ffc7ec4158ccec4649b5e7335d8e59; __cfruid=eda72c877e50095694d999b76449fe26408ebe25-1668360989\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-type\": \"application/json\",\n  \"content-length\": 66\n}\nBody: {\"username\":\"Awesome Webhooks\",\"content\":\"Test for sale products\"}\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 404 - Not Found\nHeaders: {\n  \"date\": \"Sun, 13 Nov 2022 17:37:38 GMT\",\n  \"content-type\": \"application/json\",\n  \"content-length\": \"45\",\n  \"connection\": \"keep-alive\",\n  \"strict-transport-security\": \"max-age=31536000; includeSubDomains; preload\",\n  \"x-envoy-upstream-service-time\": \"17\",\n  \"via\": \"1.1 google\",\n  \"alt-svc\": \"h3=\\\":443\\\"; ma=86400, h3-29=\\\":443\\\"; ma=86400\",\n  \"cf-cache-status\": \"DYNAMIC\",\n  \"report-to\": \"{\\\"endpoints\\\":[{\\\"url\\\":\\\"https:\\\\/\\\\/a.nel.cloudflare.com\\\\/report\\\\/v3?s=6GR%2F8Z6Hqru0VAomiV7zat6QTWjXznDJLjbxXedIjpo7qGsFeonI%2BWjHUMBGx1zf40TlF0sujqkHw6be1x0Y8cs3mdu9F0l1aMD165r6VCHR6ALhzf40InDDEZcN\\\"}],\\\"group\\\":\\\"cf-nel\\\",\\\"max_age\\\":604800}\",\n  \"nel\": \"{\\\"success_fraction\\\":0,\\\"report_to\\\":\\\"cf-nel\\\",\\\"max_age\\\":604800}\",\n  \"x-content-type-options\": \"nosniff\",\n  \"server\": \"cloudflare\",\n  \"cf-ray\": \"769946c98c7cd228-SOF\"\n}\nBody: {\n  \"message\": \"Unknown Webhook\",\n  \"code\": 10015\n}\n\n\nhttps://on.cypress.io/request\n\nBecause this error occurred during a `after all` hook we are skipping the remaining tests in the current suite: `Products on sale page`\n    at <unknown> (https://lv.sportsdirect.com/__cypress/runner/cypress_runner.js:144155:80)\n    at tryCatcher (https://lv.sportsdirect.com/__cypress/runner/cypress_runner.js:11318:23)\n    at Promise._settlePromiseFromHandler (https://lv.sportsdirect.com/__cypress/runner/cypress_runner.js:9253:31)\n    at Promise._settlePromise (https://lv.sportsdirect.com/__cypress/runner/cypress_runner.js:9310:18)\n    at Promise._settlePromise0 (https://lv.sportsdirect.com/__cypress/runner/cypress_runner.js:9355:10)\n    at Promise._settlePromises (https://lv.sportsdirect.com/__cypress/runner/cypress_runner.js:9435:18)\n    at _drainQueueStep (https://lv.sportsdirect.com/__cypress/runner/cypress_runner.js:6025:12)\n    at _drainQueue (https://lv.sportsdirect.com/__cypress/runner/cypress_runner.js:6018:9)\n    at ../../node_modules/bluebird/js/release/async.js.Async._drainQueues (https://lv.sportsdirect.com/__cypress/runner/cypress_runner.js:6034:5)\n    at Async.drainQueues (https://lv.sportsdirect.com/__cypress/runner/cypress_runner.js:5904:14)\nFrom Your Spec Code:\n    at Context.eval (webpack:///./cypress/e2e/products-on-sale/products-on-sale.cy.js:28:12)",
+                "diff": null
+              },
+              "uuid": "87a33b44-0b65-4e3a-a788-d0e4c8bfb90d",
+              "parentUUID": "e6475697-1351-4337-be7f-7ef92c980081",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [
-            "aa082c5c-853b-4141-9c05-413d4025e5f2"
+          "passes": [],
+          "failures": [
+            "87a33b44-0b65-4e3a-a788-d0e4c8bfb90d"
           ],
-          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 8036,
+          "duration": 579,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

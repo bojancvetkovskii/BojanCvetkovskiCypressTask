@@ -2,6 +2,17 @@ import {LoginForm} from "../../page-objects/login-form";
 
 describe("Registering new user tests", () => {
 
+    after(() => {
+        cy.request(
+            "POST",
+            "https://discord.com/api/webhooks/955086226547965952/WuaK1GMcRDVkOexPEz60OETIorJOvQeX4L1ftw7jDn_NuDM_g5J20FkMAcY_mMoUmXPr",
+            {
+                username: "Awesome Webhooks",
+                content: "Test for registering new user",
+            }
+        );
+    });
+
     it("Successful click on the Account button from homepage", () => {
         cy.visit("/")
         cy.get("#divSignIn").click()
