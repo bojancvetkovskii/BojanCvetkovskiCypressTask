@@ -49,4 +49,24 @@ describe("Logging in user", () => {
         expect("section#main-content").to.exist;
     })
 
+    it("Successfully sent email for changing password", () => {
+        cy.visit("/login/forgottenpassword")
+        LoginForm.inputEmailForForgottenPassword()
+        LoginForm.clickSendEmailForChangingPassword()
+        cy.url().should("include", "https://lv.sportsdirect.com/login/forgottenpassword")
+        cy.get(".dnnFormMessage.dnnFormSuccess")
+            .contains("If the email address entered was correct, you should receive a new email shortly with a link to reset your password.")
+    })
+
+    it("Should not send email for changing password when the e-mail address field is empty", () => {
+        cy.visit("/login/forgottenpassword")
+        LoginForm.clickSendEmailForChangingPassword()
+        cy.get("#EmailAddress-error").contains("Email address is required")
+    })
+
+    it("Should redirect to login page when cancel button is clicked in 'Forgotten password' section", () => {
+        cy.visit("/login/forgottenpassword")
+        LoginForm.clickCancelForChangingPassword()
+        cy.url().should("equal", "https://lv.sportsdirect.com/login")
+    })
 })

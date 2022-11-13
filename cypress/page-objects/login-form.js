@@ -14,6 +14,9 @@ const SIGN_IN_SECURELY_BUTTON = "#LogginButton";
 const FORGOTTEN_YOUR_PASSWORD_LINK = "#ForgotPasswordLinkButton";
 const EMAIL_FOR_EXISTING_USER_FIELD = "#Login_EmailAddress";
 const PASSWORD_FOR_EXISTING_USER_FIELD = "#Login_Password";
+const EMAIL_ADDRESS_FOR_FORGOT_YOUR_PASSWORD = "#EmailAddress";
+const SEND_EMAIL_BUTTON = "#EmailRequestSubmit";
+const CANCEL_CHANGING_PASSWORD_BUTTON = ".cancelWrap a";
 
 export class LoginForm {
 
@@ -63,6 +66,12 @@ export class LoginForm {
         })
     }
 
+    static inputEmailForForgottenPassword() {
+        cy.fixture("userForRegistration").then((testData) => {
+            cy.get(EMAIL_ADDRESS_FOR_FORGOT_YOUR_PASSWORD).type(testData["emailAddress"], {force: true})
+        })
+    }
+
     static clickSubscriptionCheckbox() {
         cy.get(IS_SUBSCRIBER_CHECKBOX).type("true")
     }
@@ -81,6 +90,14 @@ export class LoginForm {
 
     static clickForgottenYourPasswordLink() {
         cy.get(FORGOTTEN_YOUR_PASSWORD_LINK).click({force: true})
+    }
+
+    static clickSendEmailForChangingPassword() {
+        cy.get(SEND_EMAIL_BUTTON).click({force: true})
+    }
+
+    static clickCancelForChangingPassword() {
+        cy.get(CANCEL_CHANGING_PASSWORD_BUTTON).click({force: true})
     }
 
 }
