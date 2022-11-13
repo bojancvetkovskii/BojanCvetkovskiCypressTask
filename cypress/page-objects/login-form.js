@@ -83,5 +83,4 @@ export class LoginForm {
         cy.get(FORGOTTEN_YOUR_PASSWORD_LINK).click({force: true})
     }
 
-    static
 }

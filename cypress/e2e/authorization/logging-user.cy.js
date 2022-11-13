@@ -44,4 +44,9 @@ describe("Logging in user", () => {
         cy.url().should("include", "https://lv.sportsdirect.com/login/forgottenpassword")
     })
 
+    it("Should contain new password section", () => {
+        cy.visit("/login/forgottenpassword")
+        expect("section#main-content").to.exist;
+    })
+
 })
