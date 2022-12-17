@@ -1,14 +1,24 @@
-const FILTERING_BY_SPECIFIC_BRAND = ".FilterName[data-filtername=Aldo]";
+import { BasePage } from "./base-page";
 
-export class FilteringProducts {
+const FILTER_SELECTION = "#filterByMob"
+const FILTER_BY_BRAND = ".productFilter:nth-child(7)"
+const FILTERING_BY_SPECIFIC_BRAND = "[data-filtername=Aldo]"
+const APPLY_BUTTON = ".mobApplyFilter:first-child"
+const PRODUCT_BAND = ".productdescriptionbrand"
 
-    static selectFilteringByBrand() {
-        cy.get(FILTERING_BY_SPECIFIC_BRAND).click({force: true})
-    }
+export class FilteringProducts extends BasePage {
 
-    static verifyFilteringByBrandName() {
-        cy.get(".productdescriptionbrand").each((item) => {
-            expect(item.text()).to.eq("Aldo")
-        })
-    }
+  static selectFilteringByBrand() {
+    this.acceptCookies();
+    this.click(FILTER_SELECTION);
+    this.click(FILTER_BY_BRAND);
+    this.click(FILTERING_BY_SPECIFIC_BRAND);
+    this.click(APPLY_BUTTON);
+  }
+
+  static verifyFilteringByBrandName() {
+    cy.get(PRODUCT_BAND).each((item) => {
+      expect(item.text()).to.eq("Aldo");
+    });
+  }
 }
