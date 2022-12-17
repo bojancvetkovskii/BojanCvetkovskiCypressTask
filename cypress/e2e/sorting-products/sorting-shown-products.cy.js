@@ -3,7 +3,7 @@ import { SortingProducts } from "../../page-objects/sorting-products";
 describe("Sorting products", () => {
 
   before(() => {
-    cy.visit("https://lv.sportsdirect.com/usc/mens/shoes-and-boots");
+    cy.visit("/usc/mens/shoes-and-boots");
   });
 
   /*
