@@ -1,21 +1,27 @@
-const SORTING_BY_BRAND_ASC = "#MobSortOptions_brand_asc";
+import { BasePage } from "./base-page";
 
-export class SortingProducts {
+const BRAND_DESCRIPTION = ".productdescriptionbrand";
+const SORTING_CONTAINER = ".mobSortFilter > .MobSortSelector";
+const BRAND_ASC_ITEM = "#MobSortOptions_brand_asc[name=MobSortOptions]";
 
-    static selectSortingByBrandASC() {
-        cy.get(SORTING_BY_BRAND_ASC).type("brand_asc", {force: true})
-    }
+export class SortingProducts extends BasePage {
 
-    static verifyBrandNamesASC() {
-        let actualItems = []
-        cy.get(".productdescriptionbrand").each((item) => {
-            actualItems.push(item.text())
-        })
+  static selectSortingByBrandASC() {
+    this.click(SORTING_CONTAINER);
+    this.acceptCookies();
+    cy.get(BRAND_ASC_ITEM).check();
+  }
 
-        cy.wrap(actualItems).then(() => {
-            let expectedItems = [...actualItems].sort((item1, item2) => item1.localeCompare(item2))
-            expect(actualItems).to.deep.eq(expectedItems)
-            // Tests are failing because I believe the page itself has broken sort function.
-        })
-    }
+  static verifyBrandNamesASC() {
+    let actualItems = [];
+
+    cy.get(BRAND_DESCRIPTION).each((item) => {
+      actualItems.push(item.text());
+    });
+
+    cy.wrap(actualItems).then(() => {
+      let expectedItems = [...actualItems].sort();
+      expect(actualItems).to.deep.eq(expectedItems);
+    });
+  }
 }
