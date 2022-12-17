@@ -1,103 +1,56 @@
-const TITLE = "#Registration_Title";
-const FIRST_NAME_FIELD = "#Registration_FirstName";
-const LAST_NAME_FIELD = "#Registration_LastName";
-const EMAIL_ADDRESS_FIELD = "#Registration_EmailAddress";
-const DATE_OF_BIRTH_DAY = "#Registration_DateOfBirthDay";
-const DATE_OF_BIRTH_MONTH = "#Registration_DateOfBirthMonth";
-const DATE_OF_BIRTH_YEAR = "#Registration_DateOfBirthYear";
-const PASSWORD_FIELD = "#txtPassword";
-const CONFIRM_PASSWORD_FIELD = "#Registration_ConfirmPassword";
-const IS_SUBSCRIBER_CHECKBOX = "#Registration_isSubscriber";
-const REGISTER_BUTTON = "#RegistrationSubmit";
-const CANCEL_BUTTON = ".cancelBut";
-const SIGN_IN_SECURELY_BUTTON = "#LogginButton";
-const FORGOTTEN_YOUR_PASSWORD_LINK = "#ForgotPasswordLinkButton";
-const EMAIL_FOR_EXISTING_USER_FIELD = "#Login_EmailAddress";
-const PASSWORD_FOR_EXISTING_USER_FIELD = "#Login_Password";
-const EMAIL_ADDRESS_FOR_FORGOT_YOUR_PASSWORD = "#EmailAddress";
-const SEND_EMAIL_BUTTON = "#EmailRequestSubmit";
-const CANCEL_CHANGING_PASSWORD_BUTTON = ".cancelWrap a";
+import { BasePage } from "./base-page";
 
-export class LoginForm {
+const ALLOW_COOKIE_BUTTON = "#onetrust-accept-btn-handler"
+const EMAIL_FIELD = "#Login_EmailAddress"
+const PASSWORD_FIELD = "#Login_Password"
+const LOGIN_BUTTON = ".NewCustWrap #LoginButton"
+const ERROR_MESSAGE = ".field-validation-error"
+const CONTINUE_SECURELY_BUTTON = ".newCustomer .ImgButWrap"
+const FORGOTTEN_PASSWORD_LINK = ".ForgotPasswordLinkButton";
+const LOGIN_CONTAINER=".loginWrap"
 
-    static inputRegisteringData() {
-        cy.fixture("userForRegistration").then((testData) => {
-            cy.get(TITLE).type(testData["title"], {force: true})
-            cy.get(FIRST_NAME_FIELD).type(testData["firstName"], {force: true})
-            cy.get(LAST_NAME_FIELD).type(testData["lastName"], {force: true})
-            cy.get(EMAIL_ADDRESS_FIELD).type(testData["emailAddress"], {force: true})
-            cy.get(DATE_OF_BIRTH_DAY).type(testData["dateOfBirthDay"], {force: true})
-            cy.get(DATE_OF_BIRTH_MONTH).type(testData["dateOfBirthMonth"], {force: true})
-            cy.get(DATE_OF_BIRTH_YEAR).type(testData["dateOfBirthYear"], {force: true})
-            cy.get(PASSWORD_FIELD).type(testData["password"], {force: true})
-            cy.get(CONFIRM_PASSWORD_FIELD).type(testData["confirmPassword"], {force: true})
-        })
+export class LoginForm extends BasePage{
 
+    static clickContinueSecurelyButton() {
+        this.click(CONTINUE_SECURELY_BUTTON);
     }
 
-    static inputRegisteringDataWithoutPasswords() {
-        cy.fixture("userForRegistration").then((testData) => {
-            cy.get(TITLE).type(testData["title"], {force: true})
-            cy.get(FIRST_NAME_FIELD).type(testData["firstName"], {force: true})
-            cy.get(LAST_NAME_FIELD).type(testData["lastName"], {force: true})
-            cy.get(EMAIL_ADDRESS_FIELD).type(testData["emailAddress"], {force: true})
-            cy.get(DATE_OF_BIRTH_DAY).type(testData["dateOfBirthDay"], {force: true})
-            cy.get(DATE_OF_BIRTH_MONTH).type(testData["dateOfBirthMonth"], {force: true})
-            cy.get(DATE_OF_BIRTH_YEAR).type(testData["dateOfBirthYear"], {force: true})
-        })
+    static acceptCookies(){
+        // This is added since I had issue with the overlay for accepting cookies
+        // Cypress Error: I had the following error cy.click() failed because
+        // element is being covered by another element. Fix this problem or use
+        // {force: true} to disable error checking.
+        this.click(ALLOW_COOKIE_BUTTON);
     }
 
-    static inputDataForLoggingUser() {
-        cy.fixture("userForRegistration").then((testData) => {
-            cy.get(EMAIL_FOR_EXISTING_USER_FIELD).type(testData["emailAddress"], {force: true})
-            cy.get(PASSWORD_FOR_EXISTING_USER_FIELD).type(testData["password"], {force: true})
-        })
+    static inputLoginDataAndLogin(email, password) {
+        this.type(EMAIL_FIELD, email);
+        this.acceptCookies();
+        this.type(PASSWORD_FIELD, password);
+        this.click(LOGIN_BUTTON);
     }
 
-    static inputPassword(password, confirmPassword) {
-        cy.get(PASSWORD_FIELD).type(password)
-        cy.get(CONFIRM_PASSWORD_FIELD).type(confirmPassword)
+    static verifyErrorMessage(error) {
+        this.hasText(ERROR_MESSAGE, error);
     }
 
-    static inputEmailAndIncorrectPassword() {
-        cy.fixture("userForRegistration").then((testData) => {
-            cy.get(EMAIL_FOR_EXISTING_USER_FIELD).type(testData["emailAddress"], {force: true})
-            cy.get(PASSWORD_FOR_EXISTING_USER_FIELD).type("DummyPassword123", {force: true})
-        })
+    static clickLoginButton() {
+        this.click(LOGIN_BUTTON);
     }
 
-    static inputEmailForForgottenPassword() {
-        cy.fixture("userForRegistration").then((testData) => {
-            cy.get(EMAIL_ADDRESS_FOR_FORGOT_YOUR_PASSWORD).type(testData["emailAddress"], {force: true})
-        })
+    static inputPassword(password) {
+        this.type(PASSWORD_FIELD, password);
     }
 
-    static clickSubscriptionCheckbox() {
-        cy.get(IS_SUBSCRIBER_CHECKBOX).type("true")
+    static inputEmail(email) {
+        this.type(EMAIL_FIELD, email);
     }
 
-    static clickRegisterButton() {
-        cy.get(REGISTER_BUTTON).click({force: true})
+    static clickOnForgottenPasswordLink() {
+        this.click(FORGOTTEN_PASSWORD_LINK);
     }
 
-    static clickCancelButton() {
-        cy.get(CANCEL_BUTTON).click({force: true})
+    static isPageContainerVisible() {
+        this.isVisible(LOGIN_CONTAINER)
     }
-
-    static clickSignInSecurelyButton() {
-        cy.get(SIGN_IN_SECURELY_BUTTON).click({force: true})
-    }
-
-    static clickForgottenYourPasswordLink() {
-        cy.get(FORGOTTEN_YOUR_PASSWORD_LINK).click({force: true})
-    }
-
-    static clickSendEmailForChangingPassword() {
-        cy.get(SEND_EMAIL_BUTTON).click({force: true})
-    }
-
-    static clickCancelForChangingPassword() {
-        cy.get(CANCEL_CHANGING_PASSWORD_BUTTON).click({force: true})
-    }
-
 }
