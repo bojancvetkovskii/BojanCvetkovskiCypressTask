@@ -2,11 +2,9 @@
   "title": "Mr",
   "firstName": "John",
   "lastName": "Wick",
-  "emailAddress": "test@hotmail.com",
   "dateOfBirthDay": "25",
-  "dateOfBirthMonth": "July",
+  "dateOfBirthMonth": "5",
   "dateOfBirthYear": "1985",
-  "password": "Test123",
-  "confirmPassword": "Test123",
-  "isSubscriber": "true"
+  "password": "Test123!",
+  "confirmPassword": "Test123!"
 }

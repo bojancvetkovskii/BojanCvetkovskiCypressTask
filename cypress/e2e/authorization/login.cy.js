@@ -62,13 +62,13 @@ describe("Login test cases", () => {
   it("Successfully change forgotten password", () => {
     LoginForm.acceptCookies();
     LoginForm.clickOnForgottenPasswordLink();
-    ForgottenPassword.sendEmail("test@gmai.com")
-  })
+    ForgottenPassword.sendEmail("test@gmai.com");
+  });
 
   it("Cancel changing password", () => {
     LoginForm.acceptCookies();
     LoginForm.clickOnForgottenPasswordLink();
     ForgottenPassword.clickCancel();
-    LoginForm.isPageContainerVisible()
-  })
+    LoginForm.isPageContainerVisible();
+  });
 });
