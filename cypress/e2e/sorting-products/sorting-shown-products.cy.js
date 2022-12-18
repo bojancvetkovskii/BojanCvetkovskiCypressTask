@@ -6,18 +6,18 @@ describe("Sorting products", () => {
     cy.visit("/usc/mens/shoes-and-boots");
   });
 
-  /*
+
   after(() => {
       cy.request(
           "POST",
-          "https://discord.com/api/webhooks/955086226547965952/WuaK1GMcRDVkOexPEz60OETIorJOvQeX4L1ftw7jDn_NuDM_g5J20FkMAcY_mMoUmXPr",
+          "https://discord.com/api/webhooks/1051487628555452467/NxxbMgtzshPbxHSsEopxP3S4B4Ixxv5PBRREgB8vPTZz3yPRSRBJ56Zk8yWZV-V6vCI9",
           {
               username: "Awesome Webhooks",
               content: "Test for sorting products",
           }
       );
   });
-   */
+
 
   it("Should sort products by brand name ASC", () => {
     cy.viewport(1000,600);
