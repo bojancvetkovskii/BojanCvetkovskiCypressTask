@@ -22,10 +22,6 @@ export class BasePage {
     cy.get(selector).should("have.text", text);
   }
 
-  static doesNotExist(selector) {
-    cy.get(selector).should("not.exist");
-  }
-
   static isVisible(selector) {
     cy.get(selector).should("be.visible");
   }
@@ -37,27 +33,5 @@ export class BasePage {
 
   static selectItem(selector, value) {
     cy.get(selector).select(value);
-  }
-
-  static clickFirst(selector) {
-    cy.get(selector).first().click();
-  }
-
-  static saveFirstElementTextAsAlias(selector, alias) {
-    cy.get(selector)
-      .first()
-      .then((product) => {
-        cy.wrap(product.text()).as(alias);
-      });
-  }
-
-  static validateFirstElementTextByAlias(selector, alias) {
-    cy.get("@" + alias).then((lastAddedName) => {
-      cy.get(selector)
-        .first()
-        .then((el) => {
-          cy.wrap(lastAddedName).should("be.equal", el.text());
-        });
-    });
   }
 }
