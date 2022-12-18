@@ -9,9 +9,8 @@ module.exports = defineConfig({
         reporter: "mochawesome",
         reporterOptions: {
             reportDir: "cypress/results",
-            html: true,
-            overwrite: true,
-            reportFilename: "report"
+            html: false,
+            overwrite: false,
         },
         setupNodeEvents(on, config) {
         },

@@ -20,9 +20,6 @@ import addContext from "mochawesome/addContext";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-Cypress.on("uncaught:exception", error => {
-    return false
-})
 
 Cypress.on("test:after:run", (test, runnable) => {
     if (test.state === "failed") {
@@ -31,8 +28,8 @@ Cypress.on("test:after:run", (test, runnable) => {
         addContext(
             { test },
             {
-                title: "Testing custom stuff",
-                value: "Wohooo",
+                title: "Custom testing",
+                value: "Test",
             }
         );
     }
