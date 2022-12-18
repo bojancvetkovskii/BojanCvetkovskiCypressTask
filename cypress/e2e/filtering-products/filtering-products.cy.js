@@ -20,6 +20,7 @@ describe("Filtering products", () => {
     })
 
     it("Should filter products by specific brand", () => {
+        cy.viewport(1000,600);
         FilteringProducts.selectFilteringByBrand();
         FilteringProducts.verifyFilteringByBrandName();
     })

@@ -20,6 +20,7 @@ describe("Sorting products", () => {
    */
 
   it("Should sort products by brand name ASC", () => {
+    cy.viewport(1000,600);
 
     // The test is failing because the page is not sorting the products correctly.
     // We can see that the order is the following Boss, BOSS, BOSS, Boss...
