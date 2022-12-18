@@ -19,7 +19,11 @@ describe("Login test cases", () => {
   // address. This triggers the error for invalid email format and the test is broken
   // Example: mail@g
   it("Logging in with a valid user", () => {
-    LoginForm.inputLoginDataAndLogin("mail@gmai.com", "test123");
+
+    cy.fixture("existingUser").then((testData) => {
+      LoginForm.inputLoginDataAndLogin(testData["email"], testData["password"]);
+    });
+
     HomePage.checkIfContainerVisible();
   });
 
@@ -62,7 +66,10 @@ describe("Login test cases", () => {
   it("Successfully change forgotten password", () => {
     LoginForm.acceptCookies();
     LoginForm.clickOnForgottenPasswordLink();
-    ForgottenPassword.sendEmail("test@gmai.com");
+
+    cy.fixture("existingUser").then((testData) => {
+      ForgottenPassword.sendEmail(testData["email"]);
+    });
   });
 
   it("Cancel changing password", () => {
