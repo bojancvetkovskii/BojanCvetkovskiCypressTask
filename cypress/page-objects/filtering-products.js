@@ -17,6 +17,12 @@ export class FilteringProducts extends BasePage {
   }
 
   static verifyFilteringByBrandName() {
+
+    // The delay is added since the page had longer response for filtering
+    // the products by brand, and the test was sometimes failing
+    // because it was checking the unfiltered products
+    cy.wait(2000)
+
     cy.get(PRODUCT_BAND).each((item) => {
       expect(item.text()).to.eq("Aldo");
     });
